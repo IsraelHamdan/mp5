@@ -1,10 +1,7 @@
 import express from "express";
-import { login, protectedRoute } from "../controllers/authController.js";
-import { authenticateToken } from "../middleware/authMiddleware.js";
+import { login } from "../controllers/authController.js";
 
 const router = express.Router();
 
 router.post("/login", login);
-router.get("/protected", authenticateToken, protectedRoute);
-
 export default router;

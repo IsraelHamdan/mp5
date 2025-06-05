@@ -1,13 +1,15 @@
-import app from "./config/app.js";
+import app from "./config/config.js";
 import authRoutes from "./routes/authRoutes.js";
+import { config } from "./config/config.js";
+import { authenticateToken } from "./middlewares/authMiddleware.js";
+import express from "express";
 
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
 
-// Rotas
 app.use("/auth", authRoutes);
-app.use("");
 
-// Servidor
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+app.use(authenticateToken);
+
+app.listen(config.port, () => {
+  console.log(`Servidor rodando em http://localhost:${config.port}`);
 });

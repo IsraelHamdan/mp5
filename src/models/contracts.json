@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1",
+    "company": "Estacio",
+    "init": "2023-02-22",
+    "userId": "123"
+  },
+  {
+    "id": "2",
+    "company": "Microsoft",
+    "init": "2023-02-22",
+    "userId": "124"
+  },
+  {
+    "id": "3",
+    "company": "Yudcs",
+    "init": "2023-02-22",
+    "userId": "125"
+  }
+]

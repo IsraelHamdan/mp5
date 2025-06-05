@@ -1,4 +1,4 @@
-import { validateToken } from "../services/authService";
+import { validateToken } from "../services/authService.js";
 
 export const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -20,6 +20,6 @@ export const authenticateToken = (req, res, next) => {
   }
 
   req.user = user;
-
+  console.log("Middleware executado");
   next();
 };
