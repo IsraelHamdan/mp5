@@ -3,12 +3,6 @@ import users from "../models/userData.json" with {type: 'json'};
 import { config } from "../config/config.js";
 
 export const genereteToken = (user) => {
-  console.log(`
-    Dados para geração do token: \n 
-    usuario: ${user} \n 
-    chave: ${config.jwtKey} \n
-    tempo: ${config.expiresIn}
-  `)
   return jwt.sign(
     {
       id: user.id,

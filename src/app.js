@@ -3,12 +3,15 @@ import authRoutes from "./routes/authRoutes.js";
 import { config } from "./config/config.js";
 import { authenticateToken } from "./middlewares/authMiddleware.js";
 import express from "express";
+import { requireRole } from "./middlewares/roleMiddlewere.js";
+import contracRoutes from "./routes/contractRoutes.js";
 
 app.use(express.json());
 
 app.use("/auth", authRoutes);
 
 app.use(authenticateToken);
+app.use("/contracts", contracRoutes);
 
 app.listen(config.port, () => {
   console.log(`Servidor rodando em http://localhost:${config.port}`);

@@ -1,20 +1,23 @@
 [
   {
-    "id": "1",
+    "contractId": "1",
     "company": "Estacio",
     "init": "2023-02-22",
+    "end": "2024-05-64",
     "userId": "123"
   },
   {
-    "id": "2",
+    "contractId": "2",
     "company": "Microsoft",
     "init": "2023-02-22",
+    "end": "2024-05-64",
     "userId": "124"
   },
   {
-    "id": "3",
+    "contractId": "3",
     "company": "Yudcs",
     "init": "2023-02-22",
+    "end": "2024-05-64",
     "userId": "125"
   }
 ]
