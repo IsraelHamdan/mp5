@@ -10,7 +10,7 @@ export const genereteToken = (user) => {
       perfil: user.profile,
     },
     config.jwtKey,
-    { expiresIn: config.expiresIn || "1h" }
+    { expiresIn: config.expiresIn || "2h" }
   );
 };
 

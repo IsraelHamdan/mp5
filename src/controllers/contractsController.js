@@ -8,17 +8,36 @@ const service = new ContractService();
 
 export class ContractController {
   constructor() {}
-  GetRelatedContracts(req, res) {
-    const { userId, contractId } = req.params;
-    console.log(`
-      Id do usuário vindo da requisição ${userId} \n 
-      Id do contrato vindo da requisição ${contractId}
-    `);
+  GetUserContract(req, res) {
+    const { contractId } = req.params;
+    const userId = String(req.user.id);
+
     try {
-      const relatedContracts = service.findContractByUser(userId, contractId);
+      const relatedContracts = service.findUserContract(userId, contractId);
       return res.json(relatedContracts);
     } catch (err) {
       return res.status(400).json({ message: err.message });
+    }
+  }
+
+  GetAllUserContracts(req, res) {
+    try {
+      const userId = String(req.user?.id);
+      if (!userId) {
+        throw new Error("Id do usuário não encontrado na requisição");
+      }
+
+      const contracts = service.findAllUserContracts(userId);
+      if (!contracts) {
+        throw new Error(`Erro ao encontrar os contratos desse usuário`);
+      }
+
+      return res.json(contracts);
+    } catch (err) {
+      console.error(`Erro ao buscar contratos do usuário: ${err.message}`);
+      return res.status(400).json({
+        message: err.message || "Erro interno do servidor",
+      });
     }
   }
 }
