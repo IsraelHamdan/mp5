@@ -1,6 +1,7 @@
-import { validateToken } from "../services/authService.js";
+import { AuthService } from "../services/authService.js";
 
-export const authenticateToken = (req, res, next) => {
+const auth = new AuthService();
+export const authMiddleware = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -9,7 +10,7 @@ export const authenticateToken = (req, res, next) => {
       message: "Token ausente",
     });
 
-  const user = validateToken(token);
+  const user = auth.validateToken(token);
 
   if (!user) {
     return res.status(403).json({

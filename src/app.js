@@ -1,16 +1,17 @@
 import app from "./config/config.js";
 import authRoutes from "./routes/authRoutes.js";
 import { config } from "./config/config.js";
-import { authenticateToken } from "./middlewares/authMiddleware.js";
+import { authMiddleware } from "./middlewares/authMiddleware.js";
 import express from "express";
-import { requireRole } from "./middlewares/roleMiddlewere.js";
+import { requireAdmin } from "./middlewares/roleMiddlewere.js";
 import contracRoutes from "./routes/contractRoutes.js";
 
 app.use(express.json());
 
 app.use("/auth", authRoutes);
 
-app.use(authenticateToken);
+app.use(authMiddleware);
+app.use(requireAdmin);
 app.use("/contracts", contracRoutes);
 
 app.listen(config.port, () => {

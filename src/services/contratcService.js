@@ -1,12 +1,6 @@
-import { NotIn } from 'sequelize-typescript';
 import contracts from '../models/contracts.json' with { type: 'json' };
-import { nanoid } from 'nanoid'
-/**
- * Encontra contratos relacionados pelo usuário.
- * @param {string} userId - ID do usuário.
- * @param {string} contractId - ID do contrato.
- * @returns {Array} Lista de contratos relacionados.
- */
+import fs from "fs";
+import path from "path";
 
 export class ContractService {
   findUserContract(userId, contractId) {
@@ -42,22 +36,27 @@ export class ContractService {
 
   }
 
+
   createContract(company, init, end, userId) {
     try {
-      const contractId = nanoid(8)
-      if(!contract) throw new Error(`Código não gerado`)
-      const contract = {
-        id: contractId,
+      const newContract = {
+        id: String(contracts.length + 1),
         company: company, 
         init: init, 
         end: end,
         userId: userId
       }
-      
+      contracts.push(newContract)
+
+      const filePath = path.resolve(__dirname, "../models/contracts.json")
+      fs.writeFileSync(filePath, JSON.stringify(contracts, null, 2))
+      return newContract
     } catch(err) {
       throw new Error(`Erro ao criar contato: ${err.message}`)
     }
 
   }
+
+
 }
 

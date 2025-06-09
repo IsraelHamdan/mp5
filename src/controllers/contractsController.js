@@ -40,4 +40,23 @@ export class ContractController {
       });
     }
   }
+
+  createContract(req, res) {
+    try {
+      const { company, init, end } = req.body;
+      const userId = req.user?.id;
+      if (!company || !init || !end || !userId) {
+        return res
+          .status(400)
+          .json({ message: "Dados do contrato estão incompletos." });
+      }
+      const newContract = service.createContract(company, init, end, userId);
+      if (!newContract) {
+        throw new Error(`Não foi possível criar um contrato`);
+      }
+      res.status(201).json({ message: "Contrato criado com sucesso" });
+    } catch (err) {
+      console.error(`Erro ao criar contrato: ${err.message}`);
+    }
+  }
 }
