@@ -5,12 +5,14 @@ import { authMiddleware } from "./middlewares/authMiddleware.js";
 import express from "express";
 import { requireAdmin } from "./middlewares/roleMiddlewere.js";
 import contracRoutes from "./routes/contractRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 app.use(express.json());
 
 app.use("/auth", authRoutes);
 
 app.use(authMiddleware);
+app.use("/user", userRoutes);
 app.use(requireAdmin);
 app.use("/contracts", contracRoutes);
 

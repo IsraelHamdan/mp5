@@ -1,6 +1,7 @@
 import { AuthService } from "../services/authService.js";
 
 const auth = new AuthService();
+
 export const authMiddleware = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];

@@ -8,6 +8,7 @@ const service = new ContractService();
 
 export class ContractController {
   constructor() {}
+
   GetUserContract(req, res) {
     const { contractId } = req.params;
     const userId = String(req.user.id);
