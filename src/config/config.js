@@ -26,6 +26,13 @@ app.use(limiter);
 app.use(pinoHttp());
 app.use(helmet());
 
+export const createUserSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+  email: Joi.string().required(),
+  profile: Joi.string().required(),
+});
+
 export const loginSchema = Joi.object({
   username: Joi.string().required().min(3).max(30).messages({
     "string.empty": "O campo 'username' é obrigatório.",

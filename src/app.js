@@ -12,8 +12,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 
 app.use(authMiddleware);
-app.use("/user", userRoutes);
 app.use(requireAdmin);
+app.use("/user", userRoutes);
 app.use("/contracts", contracRoutes);
 
 app.listen(config.port, () => {

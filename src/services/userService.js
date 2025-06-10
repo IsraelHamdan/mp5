@@ -14,4 +14,15 @@ export class UserService {
     );
   };
 
+  createUser(username, password, email, profile){
+    const newUser = {
+      username: username,
+      password: password,
+      email: email, 
+      profile: profile,
+      id: users.length +1 
+    }
+    users.push(newUser)
+    return newUser
+  }
 }
