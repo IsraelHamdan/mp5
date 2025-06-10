@@ -5,6 +5,7 @@ const controller = new UserController();
 const router = express.Router();
 
 router.get("/", (req, res) => {
+  req.log.info("Buscando usuário");
   controller.getUser(req, res);
 });
 

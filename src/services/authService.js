@@ -3,7 +3,6 @@ import { config } from "../config/config.js";
 
 export class AuthService {
   genereteToken(user) {
-    console.log("🚀 ~ genereteToken ~ user:", user);
     return jwt.sign(
       {
         id: user.id,
