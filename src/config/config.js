@@ -4,6 +4,8 @@ import rateLimit from "express-rate-limit";
 import Joi from "joi";
 import { pinoHttp } from "pino-http";
 import helmet from "helmet";
+import bodyParser from "body-parser";
+import path from "path";
 
 dotenv.config();
 
@@ -45,5 +47,8 @@ export const loginSchema = Joi.object({
     "string.max": "A 'senha' pode ter no máximo 128 caracteres.",
   }),
 }).strict();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 export default app;
